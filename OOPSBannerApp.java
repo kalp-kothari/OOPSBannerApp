@@ -5,18 +5,17 @@
  * @author Kalp
  * @version 2.0
  */
+import java.util.*;
 public class OOPSBannerApp {
 
     public static void main(String[] args) {
 
-        System.out.println("   *******     *******   *******   ********");
-        System.out.println("  **/////**   **/////** /**////** **////// ");
-        System.out.println(" **     //** **     //**/**   /**/**       ");
-        System.out.println("/**      /**/**      /**/******* /*********");
-        System.out.println("/**      /**/**      /**/**////  ////////**");
-        System.out.println("//**     ** //**     ** /**             /**");
-        System.out.println(" //*******   //*******  /**       ******** ");
-	System.out.println("  ///////     ///////   //       ////////  ");
-
+        String s,z;
+	Scanner sc = new Scanner (System.in);
+	System.out.println("Enter the strings to join: ");
+	s = sc.nextLine();
+	z = sc.nextLine();
+	String k = String.join(" ", s, z);
+	System.out.println("Output: " + k);
     }
 }
