@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class OOPSBannerApp {
     public static void main(String[] args) {
         String word = "OOPS";
@@ -6,9 +8,8 @@ public class OOPSBannerApp {
             banner[i] = "";
         }
         for (char ch : word.toCharArray()) {
-            CharacterPatternMap pattern = CharacterPatternMap.getPattern(ch);
-            if (pattern != null) {
-                String[] rows = pattern.getPattern();
+            String[] rows = CharacterPatternMap.getPattern(ch);
+            if (rows != null) {
                 for (int i = 0; i < rows.length; i++) {
                     banner[i] = banner[i] + rows[i] + "   ";
                 }
@@ -18,22 +19,11 @@ public class OOPSBannerApp {
             System.out.println(line);
         }
     }
-
     static class CharacterPatternMap {
-        private char character;
-        private String[] pattern;
 
-        private CharacterPatternMap(char character, String[] pattern) {
-            this.character = character;
-            this.pattern = pattern;
-        }
-
-        public String[] getPattern() {
-            return pattern;
-        }
-
-        private static final CharacterPatternMap[] REGISTRY = {
-            new CharacterPatternMap('O', new String[]{
+        private static final HashMap<Character, String[]> PATTERN_MAP = new HashMap<>();
+        static {
+            PATTERN_MAP.put('O', new String[]{
                 "   *******  ",
                 "  **/////** ",
                 " **     //**",
@@ -42,8 +32,8 @@ public class OOPSBannerApp {
                 "//**     ** ",
                 " //*******  ",
                 "  ///////   "
-            }),
-            new CharacterPatternMap('P', new String[]{
+            });
+            PATTERN_MAP.put('P', new String[]{
                 "   *******",
                 " /**////**",
                 " /**   /**",
@@ -52,8 +42,8 @@ public class OOPSBannerApp {
                 " /**      ",
                 " /**      ",
                 " //       "
-            }),
-            new CharacterPatternMap('S', new String[]{
+            });
+            PATTERN_MAP.put('S', new String[]{
                 "   ********",
                 " **//////  ",
                 " /**       ",
@@ -62,16 +52,10 @@ public class OOPSBannerApp {
                 "        /**",
                 " ********  ",
                 " ////////  "
-            })
-        };
-
-        public static CharacterPatternMap getPattern(char ch) {
-            for (CharacterPatternMap entry : REGISTRY) {
-                if (entry.character == ch) {
-                    return entry;
-                }
-            }
-            return null;
+            });
+        }
+        public static String[] getPattern(char ch) {
+            return PATTERN_MAP.get(ch);
         }
     }
 }
