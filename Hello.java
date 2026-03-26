@@ -1,18 +1,20 @@
 class Hello {
-	void main(String args[]) {
-		StringBuilder nameBuilder = new StringBuilder();
-		String name = " ";
-		if (args.length >0) {
-		for (int i = 0; i < args.length; i++) {
-			nameBuilder.append(args[i]);
-			if (i<args.length-1) {
-				nameBuilder.append(", ");
-			}
-			name = nameBuilder.toString();
-		}
-		}
-		else
-			name = "World";
-		System.out.println("Hello, "+ name + "!");
-	}
+    public static void main(String[] args) {
+
+        if (args.length == 0) {
+            System.out.println("Hello, World!");
+            return;
+        }
+
+        StringBuilder nameBuilder = new StringBuilder();
+
+        for (String name : args) {
+            nameBuilder.append(name).append(", ");
+        }
+
+        // Remove last ", "
+        nameBuilder.setLength(nameBuilder.length() - 2);
+
+        System.out.println("Hello, " + nameBuilder + "!");
+    }
 }
